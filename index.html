@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>NandaPentest - Portofolio Keamanan Siber</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #eef3ec;
+            font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
+            line-height: 1.5;
+            color: #1a2c1e;
+            padding: 2rem 1.5rem;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            border: 1px solid #cbdcd0;
+        }
+
+        .role-tag {
+            display: inline-block;
+            background-color: #2d6a4f;
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.3rem 1.2rem;
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .nama {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #1a2c1e;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.5rem;
+        }
+
+        .nama span {
+            color: #2d6a4f;
+        }
+
+        .subtitle {
+            color: #4a5b4a;
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .stats-row {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 0.5rem 1.5rem;
+            background: #f4f9f2;
+            min-width: 100px;
+            border: 1px solid #d0e2d0;
+        }
+
+        .stat-number {
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: #2d6a4f;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            color: #4a5b4a;
+            font-weight: 500;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            overflow: hidden;
+            border: 1px solid #cbdcd0;
+        }
+
+        .card-image {
+            background-color: #fafdf8;
+            text-align: center;
+            padding: 1.2rem;
+            border-bottom: 1px solid #e2ece2;
+        }
+
+        .card-image img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1a2c1e;
+            margin-bottom: 0.5rem;
+            display: inline-block;
+            border-left: 4px solid #2d6a4f;
+            padding-left: 0.75rem;
+        }
+
+        .card-desc {
+            color: #3a4a3a;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-top: 0.75rem;
+        }
+
+        .highlight {
+            color: #2d6a4f;
+            font-weight: 700;
+        }
+
+        .single-card {
+            background: white;
+            overflow: hidden;
+            border: 1px solid #cbdcd0;
+            margin-bottom: 0;
+        }
+
+        .single-card .card-image {
+            background-color: #fafdf8;
+            text-align: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e2ece2;
+        }
+
+        .single-card .card-image img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .single-card .card-content {
+            padding: 1.5rem;
+        }
+
+        footer {
+            margin-top: 3rem;
+            text-align: center;
+            padding: 1.2rem;
+            background: white;
+            border: 1px solid #cbdcd0;
+            color: #6a7c6a;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 1rem;
+            }
+            .grid-2 {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            .nama {
+                font-size: 2.2rem;
+            }
+            .stats-row {
+                gap: 0.8rem;
+            }
+            .stat-item {
+                padding: 0.4rem 1rem;
+                min-width: 80px;
+            }
+            .stat-number {
+                font-size: 1.3rem;
+            }
+            .card-content {
+                padding: 1.2rem;
+            }
+            .single-card .card-content {
+                padding: 1.2rem;
+            }
+            .header {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stat-number {
+                font-size: 1.1rem;
+            }
+            .stat-label {
+                font-size: 0.65rem;
+            }
+            .card-title {
+                font-size: 1rem;
+            }
+            .card-desc {
+                font-size: 0.85rem;
+            }
+            .nama {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="role-tag">SECURITY RESEARCHER</div>
+        <h1 class="nama">Nanda<span>Pentest</span></h1>
+        <div class="subtitle">Bug Hunter & Ctf Player</div>
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-number">9+</div>
+                <div class="stat-label">Valid Reports</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">Rp32JT</div>
+                <div class="stat-label">Penghasilan</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">43x</div>
+                <div class="stat-label">CSIRT Reports</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">4</div>
+                <div class="stat-label">Certificates</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="grid-2">
+        <div class="card">
+            <div class="card-image">
+                <img src="https://i.ibb.co.com/Dfg7v3TQ/Screenshot-20260416-192215.jpg" alt="NASA Bug Bounty P5">
+            </div>
+            <div class="card-content">
+                <div class="card-title">NASA Bug Bounty</div>
+                <div class="card-desc">
+                    Berhasil menemukan celah keamanan  dalam program <span class="highlight">Bug Bounty NASA</span> 
+                    dengan kategori <span class="highlight">P5</span>. Kerentanan ini diakui secara resmi oleh tim keamanan NASA 
+                    sebagai temuan valid dan berdampak ringan pada sistem mereka.
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-image">
+                <img src="https://i.ibb.co.com/Y72yMQ6V/Screenshot-20260416-192738.jpg" alt="Bugcrowd Profile">
+            </div>
+            <div class="card-content">
+                <div class="card-title">Bugcrowd</div>
+                <div class="card-desc">
+                    Mendapatkan <span class="highlight">Rp 32.000.000</span> dari <span class="highlight">9 laporan valid</span> 
+                    di platform Bugcrowd. Dari kesembilan laporan tersebut, terdapat kerentanan dengan level 
+                    <span class="highlight">P3</span> yang memberikan kontribusi signifikan terhadap peningkatan keamanan program.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="single-card">
+        <div class="card-image">
+            <img src="https://i.ibb.co.com/whPHgHN1/Screenshot-20260413-212006.jpg" alt="CSIRT Laporan">
+        </div>
+        <div class="card-content">
+            <div class="card-title">CSIRT - Responsible Disclosure</div>
+            <div class="card-desc">
+                Berhasil menemukan celah keamanan dan melaporkan ke CSIRT sebanyak <span class="highlight">43 kali</span>. 
+                Atas kontribusi tersebut, mendapatkan <span class="highlight">4 sertifikat penghargaan</span> resmi 
+                dan <span class="highlight">32 ucapan terima kasih</span> dari tim CSIRT atas dedikasi dalam 
+                meningkatkan keamanan siber nasional.
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        NandaPentest | Security Researcher Portfolio
+    </footer>
+</div>
+</body>
+</html>
