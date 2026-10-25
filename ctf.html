@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>nandax CTF — web wargame</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e17;--bg2:#0f1624;--tx:#e6efff;--mu:#7f93b5;--a1:#5bc0ff;--a2:#3b82f6;--ok:#34d399;--er:#f87171;--ln:#1c2a44;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:light){:root{--bg:#f3f7ff;--bg2:#e6eefc;--tx:#0b1530;--mu:#4c5f82;--a1:#1c8fe0;--a2:#2563eb;--ok:#059669;--er:#dc2626;--ln:#c8d6f0;color-scheme:light}}
+*{box-sizing:border-box;margin:0}
+body{background:var(--bg);color:var(--tx);font:16px/1.6 'Space Grotesk',system-ui,sans-serif;max-width:860px;margin:auto;padding:22px 18px 60px}
+.m,pre,input,button,code{font-family:'JetBrains Mono',ui-monospace,monospace}
+header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:22px;gap:10px;flex-wrap:wrap}
+h1{font-size:30px}h1 i{color:var(--a2);font-style:normal}
+header small{color:var(--mu);font:13px 'JetBrains Mono',monospace}
+.bar{height:6px;background:var(--ln);border-radius:9px;overflow:hidden;margin-bottom:18px}
+.bar div{height:100%;width:0;background:linear-gradient(90deg,var(--a1),var(--a2));transition:.4s}
+.lv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:22px}
+.lv button{background:var(--bg2);border:1px solid var(--ln);color:var(--tx);border-radius:10px;padding:10px 12px;text-align:left;cursor:pointer;font-size:13px}
+.lv button b{display:block;color:var(--a1);font-weight:500}
+.lv button.on{border-color:var(--a2);box-shadow:0 0 18px rgba(59,130,246,.2)}
+.lv button.ok b:after{content:" \2713";color:var(--ok)}
+.card{background:var(--bg2);border:1px solid var(--ln);border-radius:12px;padding:20px}
+.tag{font:12px 'JetBrains Mono',monospace;color:var(--a1);letter-spacing:2px;text-transform:uppercase}
+h2{font-size:24px;margin:2px 0 8px}
+.card p{color:var(--mu);margin-bottom:12px}
+pre{background:var(--bg);border:1px solid var(--ln);border-radius:8px;padding:12px;font-size:12.5px;line-height:1.6;overflow-x:auto;white-space:pre-wrap;margin-bottom:14px}
+.row{display:flex;gap:8px;margin-bottom:10px}
+.row span{display:flex;align-items:center;font:13px 'JetBrains Mono',monospace;color:var(--mu);white-space:nowrap}
+input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--ln);border-radius:8px;color:var(--tx);padding:10px 12px;font-size:14px}
+input:focus{outline:0;border-color:var(--a2)}
+button.go{background:linear-gradient(135deg,var(--a1),var(--a2));color:#04101f;border:0;border-radius:8px;padding:10px 16px;font-weight:500;font-size:13px;cursor:pointer}
+#out{min-height:56px;white-space:pre-wrap;color:var(--a1)}
+details{margin:6px 0 16px;color:var(--mu);font-size:14px}summary{cursor:pointer;color:var(--a1)}
+#msg{font:13px 'JetBrains Mono',monospace;margin-top:8px;min-height:20px}
+.foot{margin-top:24px;color:var(--mu);font:12px 'JetBrains Mono',monospace;text-align:center}
+.note{font-size:12px;color:var(--mu);margin-top:4px}
+</style>
+</head>
+<body>
+<header><div><h1>nanda<i>x</i> ctf</h1><small>&gt;_ web wargame · static · hack the planet</small></div><small id="sc"></small></header>
+<div class="bar"><div id="pb"></div></div>
+<div class="lv" id="lv"></div>
+<div class="card" id="pn"></div>
+<div class="foot">Dijalankan 100%% di browser kamu (GitHub Pages / static hosting apa pun). Latihan legal untuk belajar, bukan target nyata.</div>
+
+<script>
+// ---- data terenkripsi per level: {seed, cipher, hash} ----
+// Tidak ada teks "nandax{...}" di mana pun dalam file ini.
+// Flag hanya didekripsi setelah logika exploit level itu berhasil
+// direplikasi dengan input yang benar.
+const DATA = {"0": {"seed": "ac30b9bc47ac57e481bc4fa1", "cipher": "9f06986ab25079a751337232d1b33bc2f293ded6d4986048", "hash": "e38f62c0b93a645f4eb889e83d0a19684c658dbf45f18e50588780b07d4b47a5"}, "1": {"seed": "bf6befce6f5f41379de2424b", "cipher": "b40f6253ced2fe31cac62ca04f9bae1731ddda58f5cb5fce2700b36dae4951", "hash": "8c4aaa4063f843d76dc5aa9974028e6066d23508b2fe64f2c4f5fb340e64f295"}, "2": {"seed": "6f122f6268f18032132e66c4", "cipher": "79e8136b70318b58e653a5835ed5aa863f72ff167d0cafabe895980a43c0", "hash": "bdba9f8c1ba92c9e1510756434c9d182e2a3f60450e03fda13ed5ecd97290483"}, "3": {"seed": "a85f5cb5b97e4340328a3e8a", "cipher": "f0da76a953f5662c4cc2b52756ffabcf7d6ff39bf2628c84201d8bd710", "hash": "08ef206bb3504bd0d16d0c08b16e4d6f4f6de3cf7d6ba85be9d2a753d54096c5"}};
+
+async function sha256Bytes(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return new Uint8Array(buf);
+}
+function hex2bytes(hex){
+  const a = new Uint8Array(hex.length/2);
+  for(let i=0;i<a.length;i++) a[i] = parseInt(hex.substr(i*2,2),16);
+  return a;
+}
+function bytes2hex(b){
+  return Array.from(b).map(x=>x.toString(16).padStart(2,'0')).join('');
+}
+async function revealFlag(level){
+  const d = DATA[level];
+  const key = await sha256Bytes(d.seed);
+  const cipher = hex2bytes(d.cipher);
+  const out = new Uint8Array(cipher.length);
+  for(let i=0;i<cipher.length;i++) out[i] = cipher[i] ^ key[i];
+  return new TextDecoder().decode(out);
+}
+async function checkFlag(level, guess){
+  const h = bytes2hex(await sha256Bytes(guess.trim()));
+  return h === DATA[level].hash;
+}
+
+const dec=s=>{try{return decodeURIComponent(s.replace(/\+/g,' '))}catch(e){return s}};
+function qs(s){const o={};s.replace(/^\?/,'').split('&').filter(Boolean).forEach(p=>{let [k,...v]=p.split('=');v=dec(v.join('='));k=dec(k);const m=k.match(/^([^\[]+)\[(.*)\]$/);
+if(m){if(m[2]===''){(o[m[1]]=Array.isArray(o[m[1]])?o[m[1]]:[]).push(v)}else{(typeof o[m[1]]==='object'&&o[m[1]]||(o[m[1]]={}))[m[2]]=v}}else o[k]=v});return o}
+
+const L=[
+{n:"Robots",d:"Mudah",desc:"Sebuah situs kecil menyembunyikan panel admin. Cari tahu di mana. Ketik path-nya seperti di address bar.",pre:"GET ",ph:"/",
+src:`# tidak ada source, ini recon murni.
+# File apa yang biasanya memberi tahu crawler
+# path mana yang TIDAK boleh diindeks?`,
+hint:"Coba /robots.txt, lalu kunjungi path yang dilarang.",
+trigger:v=>{const p=('/'+v.trim().replace(/^\/+/,'')).replace(/\/+$/,'')||'/';
+const R={'/':'nandax corp — coming soon','/robots.txt':'User-agent: *\nDisallow: /s3cr3t-panel'};
+if(p==='/s3cr3t-panel') return {hit:true, body:'Welcome admin!\n[[FLAG]]'};
+if(R[p]!==undefined) return {hit:false, body:'200 OK\n'+R[p]};
+return {hit:false, body:'404 Not Found'}}},
+{n:"Strcmp",d:"Mudah",desc:"Password disimpan rahasia. Kamu tidak perlu menebaknya. Server ini (secara konsep) berjalan di PHP versi lama.",pre:"GET /?",ph:"pass=tebakan",
+src:`<?php
+$secret = getenv('SECRET_PASS');
+
+if (isset($_GET['pass'])) {
+    if (strcmp($_GET['pass'], $secret) == 0) {
+        echo $flag;
+    } else {
+        echo "Wrong password.";
+    }
+}`,
+hint:"strcmp() di PHP lama mengembalikan NULL kalau argumennya bukan string. Bagaimana cara mengirim array lewat query string? Coba pass[]=x.",
+trigger:v=>{const g=qs(v);if(!('pass' in g))return{hit:false,body:'(no output)'};
+if(typeof g.pass==='object')return{hit:true,body:'Warning: strcmp() expects parameter 1 to be string, array given\n[[FLAG]]'};
+return{hit:false,body:'Wrong password.'}}},
+{n:"Dot Dot Slash",d:"Sedang",desc:"File viewer sederhana. Developer sudah menambahkan filter untuk traversal. Flag ada satu folder di atas folder pages/.",pre:"GET /?",ph:"page=home.txt",
+src:`<?php
+$f = $_GET['page'] ?? 'home.txt';
+
+// anti path traversal
+$f = str_replace('../', '', $f);
+
+echo file_get_contents('/var/www/pages/' . $f);`,
+hint:"str_replace hanya jalan satu kali dan tidak rekursif. Apa yang tersisa kalau '../' dihapus dari '....//'?",
+trigger:v=>{const g=qs(v);let f=g.page===undefined?'home.txt':String(g.page);f=f.split('../').join('');
+const st=[];for(const x of ('/var/www/pages/'+f).split('/')){if(x==='..')st.pop();else if(x&&x!=='.')st.push(x)}
+const p='/'+st.join('/');
+const FS={'/var/www/pages/home.txt':'Welcome to my notes.','/var/www/pages/about.txt':'Just a simple file viewer.'};
+if(p==='/var/www/flag.txt') return {hit:true, body:'[[FLAG]]'};
+if(FS[p]!==undefined) return {hit:false, body:FS[p]};
+return {hit:false, body:'Warning: file_get_contents('+p+'): failed to open stream'}}},
+{n:"Pipe Dream",d:"Sedang",desc:"Tool ping online. Blacklist sudah dipasang untuk operator umum. Flag ada di flag.txt pada direktori kerja.",pre:"GET /?",ph:"host=8.8.8.8",
+src:`<?php
+$host = $_GET['host'];
+
+if (preg_match('/[;&]/', $host)) {
+    die('Hacker!');
+}
+
+echo shell_exec("ping -c 1 " . $host);`,
+hint:"Blacklist-nya hanya ; dan &. Masih ada operator shell lain untuk merangkai perintah. Coba host=8.8.8.8|ls",
+trigger:v=>{const g=qs(v);if(g.host===undefined)return{hit:false,body:'(no output)'};const h=String(g.host);if(/[;&]/.test(h))return{hit:false,body:'Hacker!'};
+let flagHit=false;
+const out=('ping -c 1 '+h).split(/\|/).map(s=>s.trim()).map((c,i)=>{
+if(i===0)return'PING '+c.split(' ').pop()+': 1 packets transmitted, 1 received';
+const w=c.split(/\s+/);if(c==='ls')return'flag.txt\nindex.php';if(c==='id')return'uid=33(www-data) gid=33(www-data)';if(c==='whoami')return'www-data';
+if(w[0]==='cat'&&/flag\.txt$/.test(w[1]||'')){flagHit=true;return'[[FLAG]]'}
+return'sh: 1: '+w[0]+': not found'}).join('\n');
+return {hit:flagHit, body:out}}}
+];
+
+let cur=0,done=[];
+const $=id=>document.getElementById(id);
+try{done=JSON.parse(localStorage.getItem('nx-ctf')||'[]')}catch(e){}
+const save=()=>{try{localStorage.setItem('nx-ctf',JSON.stringify(done))}catch(e){}};
+function menu(){$('lv').innerHTML='';L.forEach((l,i)=>{const b=document.createElement('button');b.className=(i===cur?'on ':'')+(done.includes(i)?'ok':'');
+b.innerHTML='<b>L'+String(i).padStart(2,'0')+'</b>'+l.n+' · '+l.d;b.onclick=()=>{cur=i;show()};$('lv').appendChild(b)});
+$('pb').style.width=done.length/L.length*100+'%';$('sc').textContent=done.length+'/'+L.length+' solved'}
+function show(){const l=L[cur];menu();
+$('pn').innerHTML='<div class="tag">level '+cur+' · '+l.d+'</div><h2>'+l.n+'</h2><p>'+l.desc+'</p><pre id="sr"></pre>'+
+'<div class="row"><span>'+l.pre+'</span><input id="in" placeholder="'+l.ph+'" autocapitalize="off" autocorrect="off" spellcheck="false"><button class="go" id="rq">send</button></div>'+
+'<pre id="out">// response muncul di sini</pre><details><summary>hint</summary><p style="margin-top:6px">'+l.hint+'</p></details>'+
+'<div class="row"><input id="fg" placeholder="nandax{...}" autocapitalize="off" spellcheck="false"><button class="go" id="sb">submit flag</button></div><div id="msg"></div>'+
+'<div class="note">Flag dicek &amp; didekripsi lewat SHA-256 di browser kamu saat dibutuhkan, bukan disimpan sebagai teks biasa di file ini.</div>';
+$('sr').textContent=l.src;
+const go=async()=>{const r=l.trigger($('in').value);
+if(r.hit){const flag=await revealFlag(cur);$('out').textContent=r.body.replace('[[FLAG]]',flag)}
+else{$('out').textContent=r.body}};
+$('rq').onclick=go;$('in').onkeydown=e=>{if(e.key==='Enter')go()};
+const sub=async()=>{const v=$('fg').value.trim();const m=$('msg');
+if(await checkFlag(cur,v)){m.style.color='var(--ok)';m.textContent='\u2713 benar! level '+cur+' selesai.';if(!done.includes(cur)){done.push(cur);save();menu()}}
+else{m.style.color='var(--er)';m.textContent='\u2717 flag salah, coba lagi.'}};
+$('sb').onclick=sub;$('fg').onkeydown=e=>{if(e.key==='Enter')sub()}}
+show();
+</script>
+</body>
+</html>
