@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>PDF Suite – Market</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#fff8dc;--card:#ffffff;--ink:#1c1a10;--mut:#6b6648;--line:#e8dd9a;--y:#ffd60a;--yd:#1c1a10;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#16140a;--card:#221f0e;--ink:#f6f1d6;--mut:#b3ac84;--line:#3b3615;--y:#ffd60a;--yd:#1c1a10}}
+:root[data-theme="dark"]{--bg:#16140a;--card:#221f0e;--ink:#f6f1d6;--mut:#b3ac84;--line:#3b3615;--y:#ffd60a;--yd:#1c1a10}
+*{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1rem/1.6 "DM Sans",system-ui,sans-serif}
+.w{max-width:720px;margin:0 auto;padding:0 20px}
+header{background:var(--y);color:var(--yd)}
+header .w{padding-top:44px;padding-bottom:44px}
+.tag{display:inline-block;background:var(--yd);color:var(--y);font-weight:700;font-size:.8rem;padding:4px 12px;border-radius:99px}
+h1{font:800 clamp(2rem,8vw,3rem)/1.05 "Bricolage Grotesque",sans-serif;margin:16px 0 12px}
+h2{font:800 1.5rem/1.2 "Bricolage Grotesque",sans-serif;margin:0 0 14px}
+header p{font-size:1.1rem;margin:0 0 22px;max-width:30em}
+.btn{display:inline-block;text-decoration:none;font-weight:700;border-radius:12px;padding:14px 22px;border:2px solid var(--yd);background:var(--yd);color:var(--y)}
+.btn.o{background:transparent;color:var(--yd)}
+.btn:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+section{padding:36px 0 4px}
+.grid{display:grid;gap:12px}
+.card{background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:16px 18px}
+.card h3{margin:0 0 4px;font-size:1.02rem}.card p{margin:0;color:var(--mut);font-size:.94rem}
+.price{display:grid;gap:14px}
+@media(min-width:600px){.price{grid-template-columns:1fr 1fr}}
+.pc{border-radius:16px;padding:22px;border:2px solid var(--line);background:var(--card)}
+.pc.hot{border-color:var(--y);box-shadow:0 0 0 3px var(--y)}
+.pc small{color:var(--mut)}
+.amt{font:800 2.4rem/1.1 "Bricolage Grotesque",sans-serif;margin:6px 0}
+.pc ul{padding-left:18px;margin:10px 0 18px;color:var(--mut)}
+.pc .btn{display:block;text-align:center}
+.pc.hot .btn{background:var(--y);color:var(--yd);border-color:var(--yd)}
+.slots{display:flex;gap:6px;margin:8px 0 4px}.slots i{flex:1;height:10px;border-radius:5px;background:var(--line)}.slots i.f{background:var(--y);outline:1px solid var(--yd)}
+ol{padding-left:20px;margin:0}ol li{margin-bottom:8px}
+details{background:var(--card);border:1.5px solid var(--line);border-radius:12px;padding:12px 16px;margin-bottom:10px}
+summary{font-weight:700;cursor:pointer}details p{margin:8px 0 0;color:var(--mut)}
+footer{margin-top:40px;padding:22px 0 30px;border-top:1.5px solid var(--line);color:var(--mut);font-size:.88rem}
+</style>
+</head>
+<body>
+<header><div class="w">
+<span class="tag">BETA · 10 slot gratis</span>
+<h1>PDF Suite: 6 alat PDF dalam satu aplikasi</h1>
+<p>Ekstrak data KTP/KK, sortir dokumen, cari di arsip, sensor data pribadi, baca slip gaji dan rekening koran. Semua diproses di komputermu, tanpa upload.</p>
+<a class="btn o" href="#harga">Lihat harga</a>
+</div></header>
+
+<main class="w">
+<section>
+<h2>Isi paketnya</h2>
+<div class="grid">
+<div class="card"><h3>1. Ekstraktor KTP/KK</h3><p>Ambil NIK dan nama dari PDF, lalu cocokkan antar berkas.</p></div>
+<div class="card"><h3>2. Penyortir dokumen</h3><p>Kenali KTP, KK, slip gaji, rekening koran, lalu salin ke folder per kategori.</p></div>
+<div class="card"><h3>3. Pencari arsip offline</h3><p>Cari kata kunci di banyak PDF sekaligus, lengkap dengan halaman dan cuplikan.</p></div>
+<div class="card"><h3>4. Sensor data sensitif</h3><p>Menghapus teks aslinya dari file (bukan sekadar kotak hitam), lalu memeriksa ulang hasilnya. Jika masih ada yang terbaca, file dibatalkan.</p></div>
+<div class="card"><h3>5. Ekstraktor keuangan</h3><p>Slip gaji dan rekening koran jadi tabel, bisa diekspor ke CSV.</p></div>
+<div class="card"><h3>6. Utilitas</h3><p>Pisah, gabung, dan beri watermark pada PDF.</p></div>
+</div>
+</section>
+
+<section id="harga">
+<h2>Harga</h2>
+<div class="price">
+<div class="pc hot">
+<small>10 pengguna pertama</small>
+<div class="amt">Gratis</div>
+<div class="slots" id="slots" aria-hidden="true"></div>
+<small id="sisa"></small>
+<ul><li>Semua 6 modul</li><li>Syarat: isi form feedback singkat</li><li>Versi beta, pakai dokumen contoh dulu</li></ul>
+<a class="btn" id="b1" href="#">Ambil slot gratis</a>
+</div>
+<div class="pc">
+<small>Setelah slot gratis habis</small>
+<div class="amt">Rp 6.000</div>
+<small>per pembeli, sekali bayar</small>
+<ul><li>Semua 6 modul</li><li>Lisensi 1 pengguna</li><li>Dikirim sebagai file ZIP</li></ul>
+<a class="btn" id="b2" href="#">Beli</a>
+</div>
+</div>
+</section>
+
+<section>
+<h2>Cara pakai</h2>
+<ol><li>Unduh ZIP, ekstrak.</li><li>Pasang Python 64-bit (centang Add to PATH), lalu klik <b>install.bat</b>.</li><li>Klik <b>jalankan.bat</b>. Selesai.</li></ol>
+</section>
+
+<section>
+<h2>Pertanyaan umum</h2>
+<details><summary>Apakah data saya dikirim ke internet?</summary><p>Tidak. Pemrosesan berjalan di komputermu. Internet hanya dipakai saat memasang pustaka lewat install.bat.</p></details>
+<details><summary>Apa maksud “beta”?</summary><p>Aplikasi masih diuji. Pakai dokumen contoh dulu, dan periksa sendiri hasil sensor (Ctrl+F di PDF hasil) sebelum dibagikan.</p></details>
+<details><summary>Bisa untuk PDF hasil scan?</summary><p>Belum. Aplikasi membaca teks yang ada di dalam PDF, dan belum punya OCR.</p></details>
+<details><summary>Syaratnya apa?</summary><p>Windows dengan Python 3.10 atau lebih baru (64-bit). Jika ada error, kirim file error_log.txt agar bisa diperbaiki.</p></details>
+</section>
+</main>
+
+<footer><div class="w">PDF Suite · versi beta · lisensi 1 pengguna, dilarang dijual ulang atau dibagikan.</div></footer>
+
+<script>
+var WA="6285385275177";
+var TERPAKAI=0,TOTAL=10;
+function link(t){return "https://wa.me/"+WA+"?text="+encodeURIComponent(t)}
+document.getElementById("b1").href=link("Halo, saya mau ambil slot gratis PDF Suite (beta).");
+document.getElementById("b2").href=link("Halo, saya mau beli PDF Suite Rp 6.000.");
+var s=document.getElementById("slots");
+for(var i=0;i<TOTAL;i++){var d=document.createElement("i");if(i<TERPAKAI)d.className="f";s.appendChild(d)}
+var sisa=TOTAL-TERPAKAI;
+document.getElementById("sisa").textContent=sisa>0?"Sisa "+sisa+" dari "+TOTAL+" slot gratis":"Slot gratis habis, harga normal berlaku";
+if(sisa<=0){document.getElementById("b1").style.display="none"}
+</script>
+</body>
+</html>
